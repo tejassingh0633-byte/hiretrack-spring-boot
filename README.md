@@ -15,6 +15,8 @@ HireTrack is a secure, full-stack placement application tracker built using Java
 - Persistent light and dark themes
 - MySQL database persistence
 - Layered MVC architecture
+- NLP-based job-fit analysis using TF-IDF, cosine similarity and technical-skill extraction
+- Displays resume–job match score, matched skills, missing skills and recommendations
 
 ## Technology Stack
 
@@ -144,6 +146,12 @@ src/main/resources
 | Light Theme | Dark Theme |
 |---|---|
 | ![Register Light](docs/screenshots/register-light.png) | ![Register Dark](docs/screenshots/register-dark.png) |
+
+### AI Job Fit Analyzer
+
+| Light Theme | Dark Theme |
+|---|---|
+| ![AI Job Match Light](docs/screenshots/ai-job-match-light.png) | ![AI Job Match Dark](docs/screenshots/ai-job-match-dark.png) |
 
 ## Security
 

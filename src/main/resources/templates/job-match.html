@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>AI Job Match | HireTrack</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+          rel="stylesheet">
+
+    <link rel="stylesheet"
+          th:href="@{/css/style.css}">
+</head>
+
+<body>
+
+<nav class="navbar app-navbar">
+    <div class="container">
+
+        <a class="navbar-brand"
+           th:href="@{/}">
+            <span class="brand-logo">H</span>
+            HireTrack
+        </a>
+
+        <div class="d-flex align-items-center gap-3">
+
+            <span class="navbar-text text-white"
+                  th:text="${userEmail}">
+                user@example.com
+            </span>
+
+            <form th:action="@{/logout}"
+                  method="post"
+                  class="m-0">
+
+                <button type="submit"
+                        class="btn btn-sm btn-outline-light">
+                    Logout
+                </button>
+            </form>
+        </div>
+    </div>
+</nav>
+
+<main class="container py-5 ai-page">
+
+    <section class="ai-hero">
+
+        <div>
+            <p class="eyebrow">NLP-POWERED CAREER TOOL</p>
+
+            <h1>AI Job Fit Analyzer</h1>
+
+            <p class="ai-hero-text">
+                Compare your resume with a job description
+                and discover your matching and missing skills.
+            </p>
+        </div>
+
+        <a th:href="@{/}"
+           class="btn ai-back-button">
+            ← Back to Dashboard
+        </a>
+    </section>
+
+    <section class="ai-workspace">
+
+        <div class="ai-form-card">
+
+            <div class="ai-card-heading">
+                <h2>Analyze your profile</h2>
+
+                <p>
+                    Paste plain text only. Do not enter passwords
+                    or other sensitive information.
+                </p>
+            </div>
+
+            <form th:action="@{/ai-match}"
+                  method="post">
+
+                <div class="mb-4">
+                    <label for="resumeText"
+                           class="form-label">
+                        Resume or skills
+                    </label>
+
+                    <textarea id="resumeText"
+                              name="resumeText"
+                              class="form-control ai-textarea"
+                              rows="10"
+                              required
+                              placeholder="Example: Java, Spring Boot, MySQL, HTML, CSS..."
+                              th:text="${resumeText}"></textarea>
+                </div>
+
+                <div class="mb-4">
+                    <label for="jobDescription"
+                           class="form-label">
+                        Job description
+                    </label>
+
+                    <textarea id="jobDescription"
+                              name="jobDescription"
+                              class="form-control ai-textarea"
+                              rows="10"
+                              required
+                              placeholder="Paste the complete job description here..."
+                              th:text="${jobDescription}"></textarea>
+                </div>
+
+                <button type="submit"
+                        class="btn ai-analyze-button">
+                    Analyze Job Match
+                </button>
+            </form>
+        </div>
+
+        <div class="ai-result-card"
+             th:if="${result != null}">
+
+            <div class="result-top">
+
+                <div>
+                    <p class="result-label">
+                        OVERALL MATCH SCORE
+                    </p>
+
+                    <div class="score-number">
+                        <span th:text="${result.matchScore}">
+                            0
+                        </span><small>%</small>
+                    </div>
+                </div>
+
+                <span class="match-level"
+                      th:text="${result.suitability}">
+                    Match Level
+                </span>
+            </div>
+
+            <div class="progress ai-progress"
+                 role="progressbar"
+                 aria-label="Job match score">
+
+                <div class="progress-bar"
+                     th:style="'width: ' + ${result.matchScore} + '%'">
+                </div>
+            </div>
+
+            <div class="skill-section matched-section">
+
+                <h3>Matched skills</h3>
+
+                <div class="skill-list"
+                     th:if="${!#lists.isEmpty(result.matchedSkills)}">
+
+                    <span class="skill-chip matched-skill"
+                          th:each="skill : ${result.matchedSkills}"
+                          th:text="${skill}">
+                        Java
+                    </span>
+                </div>
+
+                <p class="empty-skill-message"
+                   th:if="${#lists.isEmpty(result.matchedSkills)}">
+                    No recognised technical skills matched.
+                </p>
+            </div>
+
+            <div class="skill-section missing-section">
+
+                <h3>Missing skills</h3>
+
+                <div class="skill-list"
+                     th:if="${!#lists.isEmpty(result.missingSkills)}">
+
+                    <span class="skill-chip missing-skill"
+                          th:each="skill : ${result.missingSkills}"
+                          th:text="${skill}">
+                        Docker
+                    </span>
+                </div>
+
+                <p class="empty-skill-message"
+                   th:if="${#lists.isEmpty(result.missingSkills)}">
+                    No recognised skills are missing.
+                </p>
+            </div>
+
+            <div class="recommendation-box">
+
+                <h3>Recommendation</h3>
+
+                <p th:text="${result.recommendation}">
+                    Recommendation will appear here.
+                </p>
+            </div>
+        </div>
+
+        <div class="ai-result-card ai-empty-state"
+             th:if="${result == null}">
+
+            <div class="ai-icon">AI</div>
+
+            <h2>Your analysis will appear here</h2>
+
+            <p>
+                Enter your resume and a job description,
+                then click Analyze Job Match.
+            </p>
+        </div>
+    </section>
+
+    <p class="ai-disclaimer">
+        This score is an NLP-based estimate for guidance only.
+        It does not guarantee recruitment or selection.
+    </p>
+</main>
+
+<button type="button"
+        id="themeToggle"
+        class="theme-toggle"
+        aria-label="Toggle light and dark theme">
+    ☀️
+</button>
+
+<script th:src="@{/js/theme.js}"></script>
+
+</body>
+</html>

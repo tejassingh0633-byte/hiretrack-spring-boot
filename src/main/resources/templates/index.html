@@ -53,10 +53,20 @@
             </p>
         </div>
 
-        <a class="btn btn-primary add-button"
-           th:href="@{/applications/new}">
-            + Add Application
-        </a>
+        <div class="hero-actions">
+
+    <a th:href="@{/ai-match}"
+       class="btn ai-feature-button">
+        ✦ AI Job Match
+    </a>
+
+    <!-- Keep your existing Add Application link here -->
+    <a th:href="@{/applications/new}"
+       class="btn btn-primary">
+        + Add Application
+    </a>
+
+</div>
     </section>
 
     <div class="alert alert-success"

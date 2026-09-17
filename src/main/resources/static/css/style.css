@@ -767,3 +767,420 @@ html[data-theme="dark"] table.table tbody > tr:hover > td {
     color: white !important;
     background: #172554 !important;
 }
+/* =========================================================
+   AI JOB FIT ANALYZER
+   ========================================================= */
+
+.ai-page {
+    --ai-surface: rgba(255, 255, 255, 0.94);
+    --ai-surface-soft: #f6f7ff;
+    --ai-border: rgba(79, 70, 229, 0.16);
+    --ai-heading: #10162f;
+    --ai-text: #5d6478;
+    --ai-input: #ffffff;
+    --ai-shadow: 0 24px 60px rgba(40, 35, 110, 0.12);
+
+    max-width: 1220px;
+}
+
+.ai-hero {
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+    padding: 2.8rem;
+    margin-bottom: 2rem;
+    color: #ffffff;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 28px;
+    background:
+        radial-gradient(
+            circle at 88% 20%,
+            rgba(255, 255, 255, 0.25),
+            transparent 22%
+        ),
+        linear-gradient(
+            120deg,
+            #111936 0%,
+            #3730a3 55%,
+            #5947f5 100%
+        );
+    box-shadow: 0 25px 65px rgba(55, 48, 163, 0.25);
+}
+
+.ai-hero::after {
+    content: "";
+    position: absolute;
+    right: -60px;
+    bottom: -100px;
+    width: 260px;
+    height: 260px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.08);
+}
+
+.ai-hero > * {
+    position: relative;
+    z-index: 1;
+}
+
+.ai-hero h1 {
+    margin: 0 0 0.75rem;
+    font-size: clamp(2.2rem, 5vw, 4rem);
+    font-weight: 800;
+    letter-spacing: -0.05em;
+}
+
+.ai-hero .eyebrow {
+    margin-bottom: 0.8rem;
+    color: #c7d2fe;
+    font-size: 0.78rem;
+    font-weight: 800;
+    letter-spacing: 0.15em;
+}
+
+.ai-hero-text {
+    max-width: 650px;
+    margin: 0;
+    color: rgba(255, 255, 255, 0.82);
+    font-size: 1.05rem;
+    line-height: 1.7;
+}
+
+.ai-back-button {
+    flex-shrink: 0;
+    padding: 0.85rem 1.25rem;
+    color: #312e81;
+    background: #ffffff;
+    border: 1px solid rgba(255, 255, 255, 0.7);
+    border-radius: 14px;
+    font-weight: 700;
+    box-shadow: 0 12px 30px rgba(15, 23, 42, 0.18);
+}
+
+.ai-back-button:hover {
+    color: #ffffff;
+    background: rgba(255, 255, 255, 0.16);
+    border-color: rgba(255, 255, 255, 0.45);
+}
+
+.ai-workspace {
+    display: grid;
+    grid-template-columns: minmax(0, 1.08fr) minmax(340px, 0.92fr);
+    gap: 1.5rem;
+    align-items: start;
+}
+
+.ai-form-card,
+.ai-result-card {
+    padding: 1.8rem;
+    color: var(--ai-text);
+    background: var(--ai-surface);
+    border: 1px solid var(--ai-border);
+    border-radius: 24px;
+    box-shadow: var(--ai-shadow);
+}
+
+.ai-card-heading {
+    margin-bottom: 1.5rem;
+}
+
+.ai-card-heading h2,
+.ai-result-card h2 {
+    margin-bottom: 0.4rem;
+    color: var(--ai-heading);
+    font-size: 1.45rem;
+    font-weight: 800;
+}
+
+.ai-card-heading p,
+.ai-empty-state p {
+    margin: 0;
+    color: var(--ai-text);
+    line-height: 1.6;
+}
+
+.ai-form-card .form-label {
+    color: var(--ai-heading);
+    font-weight: 700;
+}
+
+.ai-textarea {
+    min-height: 210px;
+    resize: vertical;
+    color: var(--ai-heading);
+    background: var(--ai-input);
+    border: 1px solid var(--ai-border);
+    border-radius: 16px;
+    line-height: 1.6;
+}
+
+.ai-textarea::placeholder {
+    color: #9299ac;
+}
+
+.ai-textarea:focus {
+    color: var(--ai-heading);
+    background: var(--ai-input);
+    border-color: #6366f1;
+    box-shadow: 0 0 0 0.25rem rgba(99, 102, 241, 0.15);
+}
+
+.ai-analyze-button {
+    width: 100%;
+    padding: 0.95rem 1.25rem;
+    color: #ffffff;
+    background: linear-gradient(135deg, #4f46e5, #7c3aed);
+    border: 0;
+    border-radius: 15px;
+    font-weight: 800;
+    box-shadow: 0 14px 30px rgba(79, 70, 229, 0.28);
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.ai-analyze-button:hover {
+    color: #ffffff;
+    transform: translateY(-2px);
+    box-shadow: 0 18px 38px rgba(79, 70, 229, 0.36);
+}
+
+.result-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.result-label {
+    margin: 0 0 0.3rem;
+    color: var(--ai-text);
+    font-size: 0.75rem;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+}
+
+.score-number {
+    color: var(--ai-heading);
+    font-size: 3.6rem;
+    font-weight: 850;
+    line-height: 1;
+    letter-spacing: -0.06em;
+}
+
+.score-number small {
+    margin-left: 0.2rem;
+    color: #6366f1;
+    font-size: 1.3rem;
+}
+
+.match-level {
+    display: inline-flex;
+    padding: 0.6rem 0.9rem;
+    color: #4338ca;
+    background: #e0e7ff;
+    border: 1px solid #c7d2fe;
+    border-radius: 999px;
+    font-size: 0.85rem;
+    font-weight: 800;
+}
+
+.ai-progress {
+    height: 12px;
+    margin-bottom: 1.8rem;
+    overflow: hidden;
+    background: var(--ai-surface-soft);
+    border-radius: 999px;
+}
+
+.ai-progress .progress-bar {
+    background: linear-gradient(90deg, #4f46e5, #8b5cf6);
+    border-radius: 999px;
+}
+
+.skill-section {
+    padding: 1.3rem 0;
+    border-top: 1px solid var(--ai-border);
+}
+
+.skill-section h3,
+.recommendation-box h3 {
+    margin-bottom: 0.9rem;
+    color: var(--ai-heading);
+    font-size: 1rem;
+    font-weight: 800;
+}
+
+.skill-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.55rem;
+}
+
+.skill-chip {
+    display: inline-flex;
+    padding: 0.48rem 0.72rem;
+    border-radius: 999px;
+    font-size: 0.82rem;
+    font-weight: 750;
+}
+
+.matched-skill {
+    color: #047857;
+    background: #d1fae5;
+    border: 1px solid #a7f3d0;
+}
+
+.missing-skill {
+    color: #b42318;
+    background: #fee4e2;
+    border: 1px solid #fecaca;
+}
+
+.empty-skill-message {
+    margin: 0;
+    color: var(--ai-text);
+}
+
+.recommendation-box {
+    padding: 1.2rem;
+    margin-top: 0.3rem;
+    background: var(--ai-surface-soft);
+    border: 1px solid var(--ai-border);
+    border-radius: 16px;
+}
+
+.recommendation-box p {
+    margin: 0;
+    line-height: 1.65;
+}
+
+.ai-empty-state {
+    min-height: 440px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.ai-icon {
+    display: grid;
+    width: 76px;
+    height: 76px;
+    place-items: center;
+    margin-bottom: 1.2rem;
+    color: #ffffff;
+    background: linear-gradient(135deg, #4f46e5, #9333ea);
+    border-radius: 22px;
+    font-size: 1.35rem;
+    font-weight: 900;
+    box-shadow: 0 15px 35px rgba(79, 70, 229, 0.3);
+}
+
+.ai-disclaimer {
+    max-width: 760px;
+    margin: 1.5rem auto 0;
+    color: var(--ai-text);
+    text-align: center;
+    font-size: 0.85rem;
+}
+
+/* Support the common theme selectors used by theme.js */
+body.dark-mode .ai-page,
+body.dark-theme .ai-page,
+body[data-theme="dark"] .ai-page,
+html[data-theme="dark"] .ai-page {
+    --ai-surface: rgba(15, 25, 48, 0.96);
+    --ai-surface-soft: #111d34;
+    --ai-border: rgba(148, 163, 184, 0.2);
+    --ai-heading: #f8fafc;
+    --ai-text: #aab5ca;
+    --ai-input: #0c1629;
+    --ai-shadow: 0 24px 60px rgba(0, 0, 0, 0.28);
+}
+
+body.dark-mode .ai-textarea,
+body.dark-theme .ai-textarea,
+body[data-theme="dark"] .ai-textarea,
+html[data-theme="dark"] .ai-textarea {
+    color-scheme: dark;
+}
+
+@media (max-width: 900px) {
+    .ai-workspace {
+        grid-template-columns: 1fr;
+    }
+
+    .ai-hero {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 576px) {
+    .ai-page {
+        padding-top: 1.5rem !important;
+    }
+
+    .ai-hero,
+    .ai-form-card,
+    .ai-result-card {
+        padding: 1.3rem;
+        border-radius: 19px;
+    }
+
+    .ai-hero h1 {
+        font-size: 2.25rem;
+    }
+
+    .ai-back-button {
+        width: 100%;
+    }
+
+    .result-top {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .navbar-text {
+        display: none;
+    }
+}
+.hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    gap: 0.8rem;
+}
+
+.ai-feature-button {
+    padding: 0.85rem 1.2rem;
+    color: #ffffff;
+    background: rgba(255, 255, 255, 0.13);
+    border: 1px solid rgba(255, 255, 255, 0.45);
+    border-radius: 14px;
+    font-weight: 750;
+    backdrop-filter: blur(12px);
+}
+
+.ai-feature-button:hover {
+    color: #312e81;
+    background: #ffffff;
+    border-color: #ffffff;
+}
+
+@media (max-width: 576px) {
+    .hero-actions {
+        width: 100%;
+        flex-direction: column;
+    }
+
+    .hero-actions .btn {
+        width: 100%;
+    }
+}
