@@ -1,6 +1,17 @@
-# HireTrack
+# HireTrack – AI-Assisted Placement Tracker
 
-HireTrack is a secure, full-stack placement application tracker built using Java and Spring Boot. It helps users organize job applications, monitor application statuses and manage their placement journey from a responsive dashboard.
+A secure full-stack placement application tracker featuring an NLP-powered
+Job Fit Analyzer that compares resumes with job descriptions, calculates a
+match score, and identifies matched and missing skills.
+
+## 🤖 AI Job Fit Analyzer
+
+- Extracts technical skills from resumes and job descriptions
+- Identifies matched and missing skills
+- Calculates skill-coverage and text-similarity scores
+- Uses TF-IDF and cosine similarity for textual comparison
+- Generates personalised skill-improvement recommendations
+- Works without sending resume data to an external AI service
 
 ## Features
 
